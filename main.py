@@ -10,7 +10,7 @@ client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
     api_key = api_key
 )
-
+# done
 chat_history = []
 
 personas = {
@@ -31,6 +31,13 @@ chat_history.append({
 })
 while True:
     user_input = input("enter your prompt :  ")
+
+    if user_input == "clear":
+        chat_history = []
+        chat_history.append({"role": "system","content": persona[user_persona_input]})
+
+        print("Chat history cleard")
+        continue
 
     chat_history.append({
         "role": "user",
