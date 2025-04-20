@@ -1,8 +1,10 @@
 from openai import OpenAI
 import os
+import speech_recognition as sr
 
 #add coment 
 api_key = os.getenv("API_KEY")
+recognizer = sr.Recognizer()
 
 if not api_key:
     raise ValueError ("Api key not found")
@@ -39,6 +41,20 @@ while True:
 
         print("Chat history cleard")
         continue
+
+
+    if user_input == 'mic':
+        with sr.Microphone() as source:
+          print("Listning..................")
+          audio = recognizer.listen(source)
+    
+          user_input = recognizer.recognize_google(audio)
+          print(f"You said : {user_input}")
+
+
+    
+    
+        
 
     chat_history.append({
         "role": "user",
